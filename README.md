@@ -14,3 +14,8 @@ Update: I clean up the inputs a bit and the user can choose to include metallic 
 I also include the one with just the texture input parameter. (It is also updated)
 
 ![alt text](https://github.com/moonyuet/blenderTextureInput/blob/main/textureInput/texture%20Parameter_Update.JPG?raw=true)
+
+The Add-on with Pattern and parameters to control its size and adjust its color
+
+![alt text](https://github.com/moonyuet/blenderTextureInput/blob/main/textureInput/texture_Pattern_input_Update.JPG?raw=true)
+
