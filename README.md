@@ -9,7 +9,7 @@ This is how the add-on looks like.
 
 Update: I clean up the inputs a bit and the user can choose to include metallic or disaplacement by leaving the paths to blank.
 
-![alt text](https://github.com/moonyuet/blenderTextureInput/blob/main/textureInput/texture%20map%20input.JPG?raw=true)
+![alt text](https://github.com/moonyuet/blenderTextureInput/blob/main/textureInput/texture%20map%20input_Update.JPG?raw=true)
 
 I also include the one with just the texture input parameter.
 
