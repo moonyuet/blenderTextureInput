@@ -26,15 +26,15 @@ class MaterialParamPanel(bpy.types.Panel):
         ob = bpy.context.active_object
         ma =ob.active_material
         row=layout.row()
-        row.prop(ma.slot_setting, "height")
+        row.prop(ma.slot_setting, "diffuse")
         row=layout.row()
         row.prop(ma.slot_setting, "normal")
         row=layout.row()
-        row.prop(ma.slot_setting, "diffuse")
+        row.prop(ma.slot_setting, "rough")
         row=layout.row()
         row.prop(ma.slot_setting, "metallic") 
         row=layout.row()
-        row.prop(ma.slot_setting, "rough") 
+        row.prop(ma.slot_setting, "height") 
          
 def updateParam(self, context):
     
@@ -44,11 +44,11 @@ def updateParam(self, context):
     nodes = [k for k in node
             if isinstance(k,img)]
                 
-    nodes[0].image = bpy.data.images.load(self.normal)
-    nodes[1].image = bpy.data.images.load(self.height)   
-    nodes[2].image = bpy.data.images.load(self.diffuse)
+    nodes[0].image = bpy.data.images.load(self.diffuse)
+    nodes[1].image = bpy.data.images.load(self.normal)   
+    nodes[2].image = bpy.data.images.load(self.rough)
     nodes[3].image = bpy.data.images.load(self.metallic)
-    nodes[4].image = bpy.data.images.load(self.rough)
+    nodes[4].image = bpy.data.images.load(self.height)
 
 class ParamSet(bpy.types.PropertyGroup):
 
