@@ -59,19 +59,19 @@ class PBR_SHADER(bpy.types.Operator):
         activeObject.data.materials.append(mat_pbr)
         
         bsdf = mat_pbr.node_tree.nodes.get("Principled BSDF")
+
+        #diffuse map
+        dif_tex = mat_pbr.node_tree.nodes.new("ShaderNodeTexImage")
         
         #normal map
         nrm_node = mat_pbr.node_tree.nodes.new("ShaderNodeNormalMap")
         nrm_tex = mat_pbr.node_tree.nodes.new("ShaderNodeTexImage")
         mat_pbr.node_tree.links.new(nrm_tex.outputs[0],nrm_node.inputs[1])
-        mat_pbr.node_tree.links.new (nrm_node.outputs[0], bsdf.inputs[19])
+        mat_pbr.node_tree.links.new (nrm_node.outputs[0], bsdf.inputs[19])  
 
-        #disaplacement map
-        mat_output = mat_pbr.node_tree.nodes.get("Material Output")
-        disp_node = mat_pbr.node_tree.nodes.new("ShaderNodeDisplacement")
-        disp_tex = mat_pbr.node_tree.nodes.new("ShaderNodeTexImage")
-        mat_pbr.node_tree.links.new(disp_tex.outputs[0], disp_node.inputs[0])
-        mat_pbr.node_tree.links.new(disp_node.outputs[0],mat_output.inputs[2])
+        #roughness map
+        rough_tex = mat_pbr.node_tree.nodes.new("ShaderNodeTexImage")
+        mat_pbr.node_tree.links.new(rough_tex.outputs[0], bsdf.inputs[7])
 
         #Mix node for placing pattern
         post_mix = mat_pbr.node_tree.nodes.new("ShaderNodeMixRGB")
@@ -80,9 +80,6 @@ class PBR_SHADER(bpy.types.Operator):
         col_mix = mat_pbr.node_tree.nodes.new("ShaderNodeMixRGB")
         col_mix.use_clamp = True
         col_mix.blend_type = "ADD"
-
-        #diffuse map
-        dif_tex = mat_pbr.node_tree.nodes.new("ShaderNodeTexImage")
        
         #pattern map
         pat_tex = mat_pbr.node_tree.nodes.new("ShaderNodeTexImage")
@@ -106,14 +103,19 @@ class PBR_SHADER(bpy.types.Operator):
         mat_pbr.node_tree.links.new(rgb_node.outputs[0],post_mix.inputs[2])
 
         mat_pbr.node_tree.links.new(post_mix.outputs[0],bsdf.inputs[0])
+
         
         #metallic map
         mtl_tex = mat_pbr.node_tree.nodes.new("ShaderNodeTexImage")
         mat_pbr.node_tree.links.new(mtl_tex.outputs[0], bsdf.inputs[4])
 
-        #roughness map
-        rough_tex = mat_pbr.node_tree.nodes.new("ShaderNodeTexImage")
-        mat_pbr.node_tree.links.new(rough_tex.outputs[0], bsdf.inputs[7])
+
+        #disaplacement map
+        mat_output = mat_pbr.node_tree.nodes.get("Material Output")
+        disp_node = mat_pbr.node_tree.nodes.new("ShaderNodeDisplacement")
+        disp_tex = mat_pbr.node_tree.nodes.new("ShaderNodeTexImage")
+        mat_pbr.node_tree.links.new(disp_tex.outputs[0], disp_node.inputs[0])
+        mat_pbr.node_tree.links.new(disp_node.outputs[0],mat_output.inputs[2])
 
         return {'FINISHED'}
 
@@ -126,12 +128,12 @@ def updateMaterial(self, context):
     nodes = [k for k in node
             if isinstance(k,img)]
                 
-    nodes[0].image = bpy.data.images.load(self.normal)
-    nodes[1].image = bpy.data.images.load(self.height)   
-    nodes[2].image = bpy.data.images.load(self.diffuse)
+    nodes[0].image = bpy.data.images.load(self.diffuse)
+    nodes[1].image = bpy.data.images.load(self.normal)   
+    nodes[2].image = bpy.data.images.load(self.rough)
     nodes[3].image = bpy.data.images.load(self.pattern)
     nodes[4].image = bpy.data.images.load(self.metallic)
-    nodes[5].image = bpy.data.images.load(self.rough)
+    nodes[5].image = bpy.data.images.load(self.height)
 
 def updateCol(self, context):
         mat = self.id_data
