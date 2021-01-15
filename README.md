@@ -11,6 +11,6 @@ Update: I clean up the inputs a bit and the user can choose to include metallic 
 
 ![alt text](https://github.com/moonyuet/blenderTextureInput/blob/main/textureInput/texture%20map%20input_Update.JPG?raw=true)
 
-I also include the one with just the texture input parameter.
+I also include the one with just the texture input parameter. (It is also updated)
 
-![alt text](https://github.com/moonyuet/blenderTextureInput/blob/main/textureInput/texture%20Parameter.JPG?raw=true)
+![alt text](https://github.com/moonyuet/blenderTextureInput/blob/main/textureInput/texture%20Parameter_Update.JPG?raw=true)
