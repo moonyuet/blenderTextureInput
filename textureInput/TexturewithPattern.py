@@ -30,17 +30,17 @@ class MaterialTexturePanel(bpy.types.Panel):
         layout.prop(ma, "name")
        
         row=layout.row()
-        row.prop(ma.slot_setting, "height")
+        row.prop(ma.slot_setting, "diffuse")
         row=layout.row()
         row.prop(ma.slot_setting, "normal")
         row=layout.row()
-        row.prop(ma.slot_setting, "diffuse")
+        row.prop(ma.slot_setting, "rough")
         row=layout.row()
-        row.prop(ma.slot_setting, "metallic")
+        row.prop(ma.slot_setting, "pattern")
         row=layout.row()
-        row.prop(ma.slot_setting, "rough") 
+        row.prop(ma.slot_setting, "metallic") 
         row=layout.row()
-        row.prop(ma.slot_setting, "pattern")  
+        row.prop(ma.slot_setting, "height")  
         row=layout.row()
         row.prop(ma.slot_setting, "col") 
         row=layout.row()
@@ -201,8 +201,6 @@ class materialSet(bpy.types.PropertyGroup):
             default=0.0,
             min=0, max=1,
             update = updateRepeat) 
-
-
     #color 
     #float param for coord x, y
 
