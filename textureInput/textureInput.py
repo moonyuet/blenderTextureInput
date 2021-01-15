@@ -29,15 +29,15 @@ class MaterialTexturePanel(bpy.types.Panel):
         row=layout.row()
         layout.prop(ma, "name")
         row=layout.row()
-        row.prop(ma.slot_setting, "height")
+        row.prop(ma.slot_setting, "diffuse")
         row=layout.row()
         row.prop(ma.slot_setting, "normal")
         row=layout.row()
-        row.prop(ma.slot_setting, "diffuse")
-        row=layout.row()
-        row.prop(ma.slot_setting, "metallic") 
+        row.prop(ma.slot_setting, "metallic")
         row=layout.row()
         row.prop(ma.slot_setting, "rough") 
+        row=layout.row()
+        row.prop(ma.slot_setting, "height") 
        
          
 
@@ -55,23 +55,16 @@ class PBR_SHADER(bpy.types.Operator):
         
         bsdf = mat_pbr.node_tree.nodes.get("Principled BSDF")
         
+        #diffuse map
+        dif_tex = mat_pbr.node_tree.nodes.new("ShaderNodeTexImage")
+        mat_pbr.node_tree.links.new(dif_tex.outputs[0], bsdf.inputs[0])
+        
         #normal map
         nrm_node = mat_pbr.node_tree.nodes.new("ShaderNodeNormalMap")
         nrm_tex = mat_pbr.node_tree.nodes.new("ShaderNodeTexImage")
         mat_pbr.node_tree.links.new(nrm_tex.outputs[0],nrm_node.inputs[1])
         mat_pbr.node_tree.links.new (nrm_node.outputs[0], bsdf.inputs[19])
-
-        #disaplacement map
-        mat_output = mat_pbr.node_tree.nodes.get("Material Output")
-        disp_node = mat_pbr.node_tree.nodes.new("ShaderNodeDisplacement")
-        disp_tex = mat_pbr.node_tree.nodes.new("ShaderNodeTexImage")
-        mat_pbr.node_tree.links.new(disp_tex.outputs[0], disp_node.inputs[0])
-        mat_pbr.node_tree.links.new(disp_node.outputs[0],mat_output.inputs[2])
-
-        #diffuse map
-        dif_tex = mat_pbr.node_tree.nodes.new("ShaderNodeTexImage")
-        mat_pbr.node_tree.links.new(dif_tex.outputs[0], bsdf.inputs[0])
-
+        
         #metallic map
         mtl_tex = mat_pbr.node_tree.nodes.new("ShaderNodeTexImage")
         mat_pbr.node_tree.links.new(mtl_tex.outputs[0], bsdf.inputs[4])
@@ -80,8 +73,14 @@ class PBR_SHADER(bpy.types.Operator):
         rough_tex = mat_pbr.node_tree.nodes.new("ShaderNodeTexImage")
         mat_pbr.node_tree.links.new(rough_tex.outputs[0], bsdf.inputs[7])
 
-        return {'FINISHED'}
+        #disaplacement map
+        mat_output = mat_pbr.node_tree.nodes.get("Material Output")
+        disp_node = mat_pbr.node_tree.nodes.new("ShaderNodeDisplacement")
+        disp_tex = mat_pbr.node_tree.nodes.new("ShaderNodeTexImage")
+        mat_pbr.node_tree.links.new(disp_tex.outputs[0], disp_node.inputs[0])
+        mat_pbr.node_tree.links.new(disp_node.outputs[0],mat_output.inputs[2])
 
+        return {'FINISHED'}   
 
 def updateMaterial(self, context):
     
@@ -90,12 +89,15 @@ def updateMaterial(self, context):
     img = bpy.types.ShaderNodeTexImage
     nodes = [k for k in node
             if isinstance(k,img)]
+    for k in nodes:
+        ref = []
+        ref.append(k)
                 
-    nodes[0].image = bpy.data.images.load(self.normal)
-    nodes[1].image = bpy.data.images.load(self.height)   
-    nodes[2].image = bpy.data.images.load(self.diffuse)
-    nodes[3].image = bpy.data.images.load(self.metallic)
-    nodes[4].image = bpy.data.images.load(self.rough)
+        ref[0].image = bpy.data.images.load(self.diffuse)
+        ref[1].image = bpy.data.images.load(self.normal)   
+        ref[2].image = bpy.data.images.load(self.metallic)
+        ref[3].image = bpy.data.images.load(self.rough)
+        ref[4].image = bpy.data.images.load(self.height)
         
 class materialSet(bpy.types.PropertyGroup):
 
