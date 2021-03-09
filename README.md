@@ -7,7 +7,11 @@ This is how the add-on looks like.
 
 ***Make sure you have all five maps otherwises the add-on cannot be loaded as restricted by python stringproperty in Blender
 
+Update(3/9/2021): The attribute of texture Coordinate has been added in the latest script.
+![alt text](https://github.com/moonyuet/blenderTextureInput/blob/main/textureInput/texturecoordinate.PNG?raw=true)
+
 Update: I clean up the inputs a bit and the user can choose to include metallic or disaplacement by leaving the paths to blank.
+
 
 ![alt text](https://github.com/moonyuet/blenderTextureInput/blob/main/textureInput/texture%20map%20input_Update.JPG?raw=true)
 
