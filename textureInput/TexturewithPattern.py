@@ -59,6 +59,7 @@ class PBR_SHADER(bpy.types.Operator):
         activeObject.data.materials.append(mat_pbr)
         
         bsdf = mat_pbr.node_tree.nodes.get("Principled BSDF")
+        #set specular to zero
         bsdf.inputs[4].default_value =0.0
 
         #diffuse map
