@@ -113,6 +113,7 @@ def updateMaterial(self, context):
     nodes[2].image = bpy.data.images.load(rough)
     nodes[3].image = bpy.data.images.load(metallic)
     nodes[4].image = bpy.data.images.load(height)
+    return nodes
 
 def updateRepeat(self, context):
         mat = self.id_data
