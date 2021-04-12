@@ -1,7 +1,7 @@
 bl_info ={
     "name": "Material Creation",
     "author" : "Kayla Man",
-    "version" : (1,0),
+    "version" : (3,0),
     "blender" : (2,91,0),
     "location" : " ",
     "description" : "importing textures into PBR Shader",
