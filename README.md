@@ -10,18 +10,5 @@ This is how the add-on looks like.
 Update(3/9/2021): The attribute of texture Coordinate has been added in the latest script.
 
 
-![alt text](https://github.com/moonyuet/blenderTextureInput/blob/main/textureInput/texturecoordinate.PNG?raw=true)
-
-Update: I clean up the inputs a bit and the user can choose to include metallic or disaplacement by leaving the paths to blank.
-
-
-![alt text](https://github.com/moonyuet/blenderTextureInput/blob/main/textureInput/texture%20map%20input_Update.JPG?raw=true)
-
-I also include the one with just the texture input parameter. (It is also updated)
-
-![alt text](https://github.com/moonyuet/blenderTextureInput/blob/main/textureInput/texture%20Parameter_Update.JPG?raw=true)
-
-The Add-on with Pattern and parameters to control its size and adjust its color
-
-![alt text](https://github.com/moonyuet/blenderTextureInput/blob/main/textureInput/texture_Pattern_input_Update.JPG?raw=true)
+![alt text](https://github.com/moonyuet/blenderTextureInput/blob/main/texturecoordinate.PNG?raw=true)
 
