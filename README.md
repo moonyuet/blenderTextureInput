@@ -10,5 +10,5 @@ This is how the add-on looks like.
 Update(3/9/2021): The attribute of texture Coordinate has been added in the latest script.
 
 
-![alt text](https://github.com/moonyuet/blenderTextureInput/blob/main/texturecoordinate.PNG?raw=true)
+![alt text](https://github.com/moonyuet/blenderTextureInput/blob/main/texturecoordinate.png?raw=true)
 
